@@ -1,0 +1,8 @@
+1. Consider getting Match/Link in router to work for more practice with hand configuration of typescript, and with creating/consuming IIFE compatible modules.
+2. Establish an initial lazy loading pattern; perhaps reference the library I used with my own tsx framework.
+3. Combine unistore with "react tutorial" page to persist the "character" list when navigating away from and returning to the route with this demo.
+4. Study Redux reducers to see if it is something I want in a state library dependency.
+5. Lookup the article on the super lightweight wrapper to create web components and consider the possibility of using preact to build web components.
+6. Establish simple pattern (no CLI nor bundler needed) for building PWAs in Preact.
+7. Try out Unistore Stockroom
+8. Try an even lighter weight css library; and consider the system that automatically pollyfills for the latest css....
