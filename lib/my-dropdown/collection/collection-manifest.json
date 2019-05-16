@@ -1,0 +1,44 @@
+{
+  "components": [
+    {
+      "tag": "my-dropdown",
+      "dependencies": [],
+      "componentClass": "Dropdown",
+      "componentPath": "components/dropdown/dropdown.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/dropdown/dropdown.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "listItems",
+          "attr": "list-items"
+        }
+      ],
+      "states": [
+        {
+          "name": "selectedItem"
+        },
+        {
+          "name": "toggle"
+        }
+      ],
+      "events": [
+        {
+          "event": "clickedItem"
+        }
+      ],
+      "shadow": true
+    }
+  ],
+  "collections": [],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.18.1",
+    "typescriptVersion": "3.3.3"
+  },
+  "bundles": []
+}

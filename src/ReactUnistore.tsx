@@ -1,6 +1,7 @@
-/// <reference path="../node_modules/preact/dist/preact.d.ts" />
+/// <reference path="../node_modules/preact/src/index.d.ts" />
 /// <reference path="unistore0.d.ts" />
 /// <reference path="unistore1.d.ts" />
+
 
 namespace reactUnistore {
 	// Imports:
@@ -35,7 +36,7 @@ namespace reactUnistore {
 
     export const App1 = connect<any,any,any,any>('characters', actions)(
         ({ characters, removeCharacter, handleSubmit }) => (
-            <div className="container">
+        <div>
             <h1>React Unistore</h1>
             <p>Add a character with a name and a job to the table.</p>
             <Table

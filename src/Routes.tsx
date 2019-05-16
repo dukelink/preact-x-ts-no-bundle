@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/preact/dist/preact.d.ts" />
+/// <reference path="../node_modules/preact/src/index.d.ts" />
 /// <reference path="../node_modules/preact-router/index.d.ts" />
 
 namespace routes {
@@ -30,7 +30,7 @@ namespace routes {
 			<reactApiTutorial.App path="/ReactApiTutorial" />
 			<reactTutorial.App path="/ReactTutorial" />
 			<UnistoreDemo.App path="/UnistoreDemo" />
-			<reactUnistore.App path="/reactUnistore" />
+			<reactUnistore.App path="/ReactUnistore" />
 			<stencilWC.myDropdown path="/stencilWC" />
 		</Router>
 	)}
@@ -42,8 +42,9 @@ namespace routes {
 			<Link activeClassName='logo' class='button' href='/Component1'>Comp 1</Link>
 			<a class='button' href='/Component2'>Comp 2</a>
 			<a class='button' href='/ReactApiTutorial'>API</a>
-			<a class='button' href='/ReactTutorial'>React</a>
+			<a class='button' href='/ReactTutorial'>React Demo</a>
 			<a class='button' href='/UnistoreDemo'>Unistore</a>
+			<a class='button' href='/ReactUnistore'>React Unistore</a>
 			<a class='button' href='/stencilWC'>Stencil Cust. Elem</a>
 		</header>
 	)}

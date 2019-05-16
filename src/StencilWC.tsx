@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/preact/dist/preact.d.ts" />
+/// <reference path="../node_modules/preact/src/index.d.ts" />
 
 // https://github.com/developit/preact/issues/1036
 declare module JSX {
@@ -38,7 +38,7 @@ namespace stencilWC {
 
     componentDidMount() {
         const el = document.querySelector('my-dropdown');
-        el.listItems = this.items; // could be state
+        (el as any).listItems = this.items; // could be state
         el.addEventListener('clickedItem', (event) => {
           alert(event);
         })

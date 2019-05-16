@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/preact/dist/preact.d.ts" />
+/// <reference path="../node_modules/preact/src/index.d.ts" />
 
 // https://github.com/developit/preact/issues/1036
 
