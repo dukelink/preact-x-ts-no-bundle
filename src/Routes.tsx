@@ -1,5 +1,5 @@
-/// <reference path="../node_modules/preact/src/index.d.ts" />
-/// <reference path="../node_modules/preact-router/index.d.ts" />
+/// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
+/// <reference path="../lib/preact-beta1-dts-edited/preact-router-index.d.ts" />
 
 namespace routes {
 	// Imports:

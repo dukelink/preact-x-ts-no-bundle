@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/preact/src/index.d.ts" />
+/// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
 
 namespace reactApiTutorial {
 	// Imports:

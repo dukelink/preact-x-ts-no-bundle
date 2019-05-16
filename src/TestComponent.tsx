@@ -1,11 +1,11 @@
-/// <reference path="../node_modules/preact/src/index.d.ts" />
+/// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
 
 // https://github.com/developit/preact/issues/1036
 
 namespace myapp {
 	const Component = preact.Component;
-	const h = preact.h;
-  
+  const h = preact.createElement;
+
   export interface AppProps {
     name: string;
   }

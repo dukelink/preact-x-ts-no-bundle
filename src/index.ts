@@ -1,8 +1,8 @@
-/// <reference path="../node_modules/preact/src/index.d.ts" />
+/// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
 
 namespace myapp {
     document.addEventListener("DOMContentLoaded", function() {
-        const h = preact.h, render = preact.render; // IMPORTS, can inject with destructor parameter!!!
+        const h = preact.createElement, render = preact.render; // IMPORTS, can inject with destructor parameter!!!
 
         render(h(routes.Main, null), document.body);
         render(h(routes.MainRoutes, null), document.body);

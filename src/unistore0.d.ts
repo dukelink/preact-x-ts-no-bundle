@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/preact/src/index.d.ts" />
+/// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
 /// <reference path="unistore1.d.ts" />
 
 // T - Wrapped component props

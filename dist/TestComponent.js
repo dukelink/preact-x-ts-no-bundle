@@ -1,7 +1,7 @@
 var myapp;
 (function (myapp) {
     const Component = preact.Component;
-    const h = preact.h;
+    const h = preact.createElement;
     class TestComponent extends Component {
         constructor(props) {
             super(props);
