@@ -1,10 +1,6 @@
-var routes;
-(function (routes) {
-    const Component = preact.Component, h = preact.h, Router = preactRouter, Link = function (props) {
-        console.log(props);
-        console.log(Router.Link(props));
-        return Router.Link(props);
-    };
+var myRoutes;
+(function (myRoutes) {
+    const Component = preact.Component, h = preact.h, Router = preactRouter;
     class MainRoutes extends Component {
         constructor() {
             super(...arguments);
@@ -19,13 +15,13 @@ var routes;
                 h(stencilWC.myDropdown, { path: "/stencilWC" })));
         }
     }
-    routes.MainRoutes = MainRoutes;
+    myRoutes.MainRoutes = MainRoutes;
     class Main extends Component {
         constructor() {
             super(...arguments);
             this.render = () => (h("header", null,
-                h(Link, { activeClassName: 'logo', class: 'logo', href: '/' }, "PREACT-DEMOS"),
-                h(Link, { activeClassName: 'logo', class: 'button', href: '/Component1' }, "Comp 1"),
+                h("a", { class: 'logo', href: '/' }, "PREACT-DEMOS"),
+                h("a", { class: 'button', href: '/Component1' }, "Comp 1"),
                 h("a", { class: 'button', href: '/Component2' }, "Comp 2"),
                 h("a", { class: 'button', href: '/ReactApiTutorial' }, "API"),
                 h("a", { class: 'button', href: '/ReactTutorial' }, "React Demo"),
@@ -34,5 +30,14 @@ var routes;
                 h("a", { class: 'button', href: '/stencilWC' }, "Stencil Cust. Elem")));
         }
     }
-    routes.Main = Main;
-})(routes || (routes = {}));
+    myRoutes.Main = Main;
+    class StartMenu extends Component {
+        constructor() {
+            super(...arguments);
+            this.render = () => (h("div", null,
+                h(Main, null),
+                h(MainRoutes, null)));
+        }
+    }
+    myRoutes.StartMenu = StartMenu;
+})(myRoutes || (myRoutes = {}));

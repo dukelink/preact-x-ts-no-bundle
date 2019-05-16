@@ -4,8 +4,10 @@ namespace myapp {
     document.addEventListener("DOMContentLoaded", function() {
         const h = preact.createElement, render = preact.render; // IMPORTS, can inject with destructor parameter!!!
 
-        render(h(routes.Main, null), document.body);
-        render(h(routes.MainRoutes, null), document.body);
+        render(h(myRoutes.StartMenu, null), document.body);
+ //       render(h(routes.Main, null), document.body);
+ //       render(h(routes.MainRoutes, null), document.body);
+//        render(h(reactUnistore.App, null), document.body);
     });  
 }
 // STUDY: Bundling best practices with micro libraries:

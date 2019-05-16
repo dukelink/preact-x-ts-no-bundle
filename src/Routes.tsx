@@ -1,7 +1,9 @@
 /// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
 /// <reference path="../lib/preact-beta1-dts-edited/preact-router-index.d.ts" />
 
-namespace routes {
+//import { Fragment } from "../lib/preact-beta1-dts-edited";
+
+namespace myRoutes {
 	// Imports:
 	declare function preactRouter();
 //	declare function Link({children,class:any,href});
@@ -11,7 +13,8 @@ namespace routes {
 	const 
 		Component = preact.Component,
 		h = preact.h, 
-		Router : any = preactRouter,
+		Router : any = preactRouter;
+		/*
 		Link : any = function(props) { 
 			// Existing hook can allow implementation of activeClassName
 			// if I don't want to figure out how to convert Match to IIFE / UMD module
@@ -20,7 +23,7 @@ namespace routes {
 			console.log(Router.Link(props));
 			return Router.Link(props) 
 		};
-
+		*/
 	export class MainRoutes extends Component
 	{ render = () => (
 		<Router>
@@ -38,8 +41,12 @@ namespace routes {
 	export class Main extends Component
 	{ render = () => (
 		<header>
+{/*	TODO: Try to get style change to highlight selected option...
 			<Link activeClassName='logo' class='logo' href='/'>PREACT-DEMOS</Link>
 			<Link activeClassName='logo' class='button' href='/Component1'>Comp 1</Link>
+*/}
+			<a class='logo' href='/'>PREACT-DEMOS</a>
+			<a class='button' href='/Component1'>Comp 1</a>
 			<a class='button' href='/Component2'>Comp 2</a>
 			<a class='button' href='/ReactApiTutorial'>API</a>
 			<a class='button' href='/ReactTutorial'>React Demo</a>
@@ -47,6 +54,14 @@ namespace routes {
 			<a class='button' href='/ReactUnistore'>React Unistore</a>
 			<a class='button' href='/stencilWC'>Stencil Cust. Elem</a>
 		</header>
+	)}
+
+	export class StartMenu extends Component
+	{ render = () => (
+		<div>
+			<Main />
+			<MainRoutes />
+		</div>
 	)}
 
 }
