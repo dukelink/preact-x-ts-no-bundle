@@ -37,7 +37,7 @@ var myRoutes;
         function Main() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.render = function () { return (h("header", null,
-                h("a", { class: 'logo', href: '/' }, "PREACT-DEMOS"),
+                h("a", { class: 'logo', href: '/' }, "PREACT-X-DEMOS"),
                 h("a", { class: 'button', href: '/Component1' }, "Comp 1"),
                 h("a", { class: 'button', href: '/Component2' }, "Comp 2"),
                 h("a", { class: 'button', href: '/ReactApiTutorial' }, "API"),

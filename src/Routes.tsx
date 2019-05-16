@@ -45,7 +45,7 @@ namespace myRoutes {
 			<Link activeClassName='logo' class='logo' href='/'>PREACT-DEMOS</Link>
 			<Link activeClassName='logo' class='button' href='/Component1'>Comp 1</Link>
 */}
-			<a class='logo' href='/'>PREACT-DEMOS</a>
+			<a class='logo' href='/'>PREACT-X-DEMOS</a>
 			<a class='button' href='/Component1'>Comp 1</a>
 			<a class='button' href='/Component2'>Comp 2</a>
 			<a class='button' href='/ReactApiTutorial'>API</a>
