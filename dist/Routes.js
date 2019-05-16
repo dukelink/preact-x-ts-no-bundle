@@ -1,10 +1,24 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var myRoutes;
 (function (myRoutes) {
-    const Component = preact.Component, h = preact.h, Router = preactRouter;
-    class MainRoutes extends Component {
-        constructor() {
-            super(...arguments);
-            this.render = () => (h(Router, null,
+    var Component = preact.Component, h = preact.h, Router = preactRouter;
+    var MainRoutes = (function (_super) {
+        __extends(MainRoutes, _super);
+        function MainRoutes() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.render = function () { return (h(Router, null,
                 h("div", { path: "/", style: "margin-left: 50%; margin-top:25%; position: relative; left: -50px; width: 200px" }, "WE ARE HOME!"),
                 h(myapp.TestComponent, { path: "/Component1", name: 'Component 1' }),
                 h(myapp.TestComponent, { path: "/Component2", name: 'Component 2' }),
@@ -12,14 +26,17 @@ var myRoutes;
                 h(reactTutorial.App, { path: "/ReactTutorial" }),
                 h(UnistoreDemo.App, { path: "/UnistoreDemo" }),
                 h(reactUnistore.App, { path: "/ReactUnistore" }),
-                h(stencilWC.myDropdown, { path: "/stencilWC" })));
+                h(stencilWC.myDropdown, { path: "/stencilWC" }))); };
+            return _this;
         }
-    }
+        return MainRoutes;
+    }(Component));
     myRoutes.MainRoutes = MainRoutes;
-    class Main extends Component {
-        constructor() {
-            super(...arguments);
-            this.render = () => (h("header", null,
+    var Main = (function (_super) {
+        __extends(Main, _super);
+        function Main() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.render = function () { return (h("header", null,
                 h("a", { class: 'logo', href: '/' }, "PREACT-DEMOS"),
                 h("a", { class: 'button', href: '/Component1' }, "Comp 1"),
                 h("a", { class: 'button', href: '/Component2' }, "Comp 2"),
@@ -27,17 +44,22 @@ var myRoutes;
                 h("a", { class: 'button', href: '/ReactTutorial' }, "React Demo"),
                 h("a", { class: 'button', href: '/UnistoreDemo' }, "Unistore"),
                 h("a", { class: 'button', href: '/ReactUnistore' }, "React Unistore"),
-                h("a", { class: 'button', href: '/stencilWC' }, "Stencil Cust. Elem")));
+                h("a", { class: 'button', href: '/stencilWC' }, "Stencil Cust. Elem"))); };
+            return _this;
         }
-    }
+        return Main;
+    }(Component));
     myRoutes.Main = Main;
-    class StartMenu extends Component {
-        constructor() {
-            super(...arguments);
-            this.render = () => (h("div", null,
+    var StartMenu = (function (_super) {
+        __extends(StartMenu, _super);
+        function StartMenu() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.render = function () { return (h("div", null,
                 h(Main, null),
-                h(MainRoutes, null)));
+                h(MainRoutes, null))); };
+            return _this;
         }
-    }
+        return StartMenu;
+    }(Component));
     myRoutes.StartMenu = StartMenu;
 })(myRoutes || (myRoutes = {}));
