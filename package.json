@@ -1,5 +1,5 @@
 {
-  "name": "preact-X",
+  "name": "preact-x-demo",
   "version": "1.0.0",
   "description": "preact X testing",
   "browser": "",
@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "Duke",
   "dependencies": {
-    "preact": "10.0.0-beta.1",
+    "preact": "10.0.0-beta.2",
     "purecss": "^1.0.0",
     "preact-router": "3.0.0",
     "unistore": "^3.4.1"
