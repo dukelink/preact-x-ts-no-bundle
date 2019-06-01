@@ -36,12 +36,13 @@ var reactTutorial;
         }
         App.prototype.render = function () {
             var characters = this.state.characters;
-            return (h("div", { className: "container" },
-                h("h1", null, "React Tutorial"),
-                h("p", null, "Add a character with a name and a job to the table."),
-                h(Table, { characterData: characters, removeCharacter: this.removeCharacter }),
-                h("h3", null, "Add New"),
-                h(Form, { handleSubmit: this.handleSubmit })));
+            return (h("div", { class: 'pure-g' },
+                h("div", { class: 'pure-u-1-5' }),
+                h("div", { class: 'pure-u-3-5' },
+                    h("h1", null, "React Tutorial"),
+                    h("p", null, "Add a character with a name and a job to the table."),
+                    h(Form, { handleSubmit: this.handleSubmit }),
+                    h(Table, { characterData: characters, removeCharacter: this.removeCharacter }))));
         };
         return App;
     }(Component));
@@ -70,12 +71,15 @@ var reactTutorial;
         }
         Form.prototype.render = function () {
             var _a = this.state, name = _a.name, job = _a.job;
-            return (h("form", { onSubmit: this.onFormSubmit },
-                h("label", null, "Name"),
-                h("input", { type: "text", name: "name", value: name, onChange: this.handleChange }),
-                h("label", null, "Job"),
-                h("input", { type: "text", name: "job", value: job, onChange: this.handleChange }),
-                h("button", { type: "submit" }, "Submit")));
+            return (h("form", { onSubmit: this.onFormSubmit, class: "pure-form pure-form-aligned" },
+                h("div", { class: "pure-control-group" },
+                    h("label", null, "Name"),
+                    h("input", { type: "text", name: "name", value: name, onChange: this.handleChange })),
+                h("div", { class: "pure-control-group" },
+                    h("label", null, "Job"),
+                    h("input", { type: "text", name: "job", value: job, onChange: this.handleChange })),
+                h("div", { class: "pure-controls" },
+                    h("button", { type: "submit" }, "Submit"))));
         };
         return Form;
     }(Component));
@@ -103,9 +107,13 @@ var reactTutorial;
         }
         Table.prototype.render = function () {
             var _a = this.props, characterData = _a.characterData, removeCharacter = _a.removeCharacter;
-            return (h("table", null,
-                h(TableHeader, null),
-                h(TableBody, { characterData: characterData, removeCharacter: removeCharacter })));
+            return (!characterData.length ? '' :
+                h("div", null,
+                    h("br", null),
+                    h("hr", null),
+                    h("table", { class: 'pure-table pure-table-bordered' },
+                        h(TableHeader, null),
+                        h(TableBody, { characterData: characterData, removeCharacter: removeCharacter }))));
         };
         return Table;
     }(Component));

@@ -40,19 +40,35 @@ namespace myRoutes {
 
 	export class Main extends Component
 	{ render = () => (
-		<header>
+		<header class="pure-menu pure-menu-horizontal">
 {/*	TODO: Try to get style change to highlight selected option...
 			<Link activeClassName='logo' class='logo' href='/'>PREACT-DEMOS</Link>
 			<Link activeClassName='logo' class='button' href='/Component1'>Comp 1</Link>
 */}
-			<a class='logo' href='/'>PREACT-X-DEMOS</a>
-			<a class='button' href='/Component1'>Comp 1</a>
-			<a class='button' href='/Component2'>Comp 2</a>
-			<a class='button' href='/ReactApiTutorial'>API</a>
-			<a class='button' href='/ReactTutorial'>React Demo</a>
-			<a class='button' href='/UnistoreDemo'>Unistore</a>
-			<a class='button' href='/ReactUnistore'>React Unistore</a>
-			<a class='button' href='/stencilWC'>Stencil Cust. Elem</a>
+			<a class='pure-menu-heading pure-menu-link' href='/'>PREACT-X-DEMOS</a>
+			<ul class="pure-menu-list">
+				<li class='pure-menu-item'>
+					<a class='pure-menu-link pure-button' href='/Component1'>Comp 1</a>
+				</li>
+				<li class='pure-menu-item'>
+					<a class='pure-menu-link pure-button' href='/Component2'>Comp 2</a>
+				</li>
+				<li class='pure-menu-item'>
+					<a class='pure-menu-link pure-button' href='/ReactApiTutorial'>API</a>
+				</li>
+				<li class='pure-menu-item'>
+					<a class='pure-menu-link pure-button' href='/ReactTutorial'>React Demo</a>
+				</li>
+				<li class='pure-menu-item'>
+					<a class='pure-menu-link pure-button' href='/UnistoreDemo'>Unistore</a>
+				</li>
+				<li class='pure-menu-item'>
+					<a class='pure-menu-link pure-button' href='/ReactUnistore'>React Unistore</a>
+				</li>
+				<li class='pure-menu-item'>
+					<a class='pure-menu-link pure-button' href='/stencilWC'>Stencil Cust. Elem</a>
+				</li>
+			</ul>
 		</header>
 	)}
 

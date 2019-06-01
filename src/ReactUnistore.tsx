@@ -107,22 +107,28 @@ namespace reactUnistore {
             const { name, job } = this.state;  // destructuring requires interfaces with TS
 
             return (
-                <form onSubmit={this.onFormSubmit}>
-                    <label>Name</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        value={name} 
-                        onChange={this.handleChange} />
-                    <label>Job</label>
-                    <input 
-                        type="text" 
-                        name="job" 
-                        value={job} 
-                        onChange={this.handleChange} />
-                    <button type="submit">
-                        Submit
-                    </button>
+                <form onSubmit={this.onFormSubmit} class="pure-form pure-form-aligned">
+                    <div class="pure-control-group">
+                        <label>Name</label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            value={name} 
+                            onChange={this.handleChange} />
+                    </div>
+                    <div class="pure-control-group">
+                        <label>Job</label>
+                        <input 
+                            type="text" 
+                            name="job" 
+                            value={job} 
+                            onChange={this.handleChange} />
+                    </div>
+                    <div class="pure-controls">
+                        <button type="submit">
+                            Submit
+                        </button>
+                    </div>
                 </form>
             );
         }
@@ -159,7 +165,7 @@ namespace reactUnistore {
             const { characterData, removeCharacter } = this.props;
     
             return (
-                <table>
+                <table class='pure-table pure-table-bordered'>
                     <TableHeader />
                     <TableBody characterData={characterData} removeCharacter={removeCharacter} />
                 </table>

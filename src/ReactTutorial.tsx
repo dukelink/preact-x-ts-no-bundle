@@ -27,15 +27,19 @@ namespace reactTutorial {
             const { characters } = this.state;
             
             return (
-                <div className="container">
-                    <h1>React Tutorial</h1>
-                    <p>Add a character with a name and a job to the table.</p>
-                    <Table
-                        characterData={characters}
-                        removeCharacter={this.removeCharacter}
-                    />
-                    <h3>Add New</h3>
-                    <Form handleSubmit={this.handleSubmit} />
+                <div class='pure-g'>
+                    <div class='pure-u-1-5'>
+                    </div>
+                    <div class='pure-u-3-5'>                        
+                        <h1>React Tutorial</h1>
+                        <p>Add a character with a name and a job to the table.</p>
+                        <Form handleSubmit={this.handleSubmit} />
+
+                        <Table 
+                            characterData={characters}
+                            removeCharacter={this.removeCharacter}
+                        />
+                    </div>
                 </div>
             );
         }
@@ -80,22 +84,28 @@ namespace reactTutorial {
             const { name, job } = this.state;  // destructuring requires interfaces with TS
 
             return (
-                <form onSubmit={this.onFormSubmit}>
-                    <label>Name</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        value={name} 
-                        onChange={this.handleChange} />
-                    <label>Job</label>
-                    <input 
-                        type="text" 
-                        name="job" 
-                        value={job} 
-                        onChange={this.handleChange} />
-                    <button type="submit">
-                        Submit
-                    </button>
+                <form onSubmit={this.onFormSubmit} class="pure-form pure-form-aligned">
+                    <div class="pure-control-group">
+                        <label>Name</label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            value={name} 
+                            onChange={this.handleChange} />
+                    </div>
+                    <div class="pure-control-group">
+                        <label>Job</label>
+                        <input 
+                            type="text" 
+                            name="job" 
+                            value={job} 
+                            onChange={this.handleChange} />
+                    </div>
+                    <div class="pure-controls">
+                        <button type="submit">
+                            Submit
+                        </button>
+                    </div>
                 </form>
             );
         }
@@ -132,10 +142,15 @@ namespace reactTutorial {
             const { characterData, removeCharacter } = this.props;
     
             return (
-                <table>
-                    <TableHeader />
-                    <TableBody characterData={characterData} removeCharacter={removeCharacter} />
-                </table>
+                !characterData.length ? '' :
+                <div>
+                    <br/>
+                    <hr/>
+                    <table class='pure-table pure-table-bordered'>
+                        <TableHeader />
+                        <TableBody characterData={characterData} removeCharacter={removeCharacter} />
+                    </table>
+                </div>
             );
         }
     }

@@ -81,12 +81,15 @@ var reactUnistore;
         }
         Form.prototype.render = function () {
             var _a = this.state, name = _a.name, job = _a.job;
-            return (h("form", { onSubmit: this.onFormSubmit },
-                h("label", null, "Name"),
-                h("input", { type: "text", name: "name", value: name, onChange: this.handleChange }),
-                h("label", null, "Job"),
-                h("input", { type: "text", name: "job", value: job, onChange: this.handleChange }),
-                h("button", { type: "submit" }, "Submit")));
+            return (h("form", { onSubmit: this.onFormSubmit, class: "pure-form pure-form-aligned" },
+                h("div", { class: "pure-control-group" },
+                    h("label", null, "Name"),
+                    h("input", { type: "text", name: "name", value: name, onChange: this.handleChange })),
+                h("div", { class: "pure-control-group" },
+                    h("label", null, "Job"),
+                    h("input", { type: "text", name: "job", value: job, onChange: this.handleChange })),
+                h("div", { class: "pure-controls" },
+                    h("button", { type: "submit" }, "Submit"))));
         };
         return Form;
     }(Component));
@@ -114,7 +117,7 @@ var reactUnistore;
         }
         Table.prototype.render = function () {
             var _a = this.props, characterData = _a.characterData, removeCharacter = _a.removeCharacter;
-            return (h("table", null,
+            return (h("table", { class: 'pure-table pure-table-bordered' },
                 h(TableHeader, null),
                 h(TableBody, { characterData: characterData, removeCharacter: removeCharacter })));
         };

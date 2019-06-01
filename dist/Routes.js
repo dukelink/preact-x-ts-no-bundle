@@ -36,15 +36,23 @@ var myRoutes;
         __extends(Main, _super);
         function Main() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.render = function () { return (h("header", null,
-                h("a", { class: 'logo', href: '/' }, "PREACT-X-DEMOS"),
-                h("a", { class: 'button', href: '/Component1' }, "Comp 1"),
-                h("a", { class: 'button', href: '/Component2' }, "Comp 2"),
-                h("a", { class: 'button', href: '/ReactApiTutorial' }, "API"),
-                h("a", { class: 'button', href: '/ReactTutorial' }, "React Demo"),
-                h("a", { class: 'button', href: '/UnistoreDemo' }, "Unistore"),
-                h("a", { class: 'button', href: '/ReactUnistore' }, "React Unistore"),
-                h("a", { class: 'button', href: '/stencilWC' }, "Stencil Cust. Elem"))); };
+            _this.render = function () { return (h("header", { class: "pure-menu pure-menu-horizontal" },
+                h("a", { class: 'pure-menu-heading pure-menu-link', href: '/' }, "PREACT-X-DEMOS"),
+                h("ul", { class: "pure-menu-list" },
+                    h("li", { class: 'pure-menu-item' },
+                        h("a", { class: 'pure-menu-link pure-button', href: '/Component1' }, "Comp 1")),
+                    h("li", { class: 'pure-menu-item' },
+                        h("a", { class: 'pure-menu-link pure-button', href: '/Component2' }, "Comp 2")),
+                    h("li", { class: 'pure-menu-item' },
+                        h("a", { class: 'pure-menu-link pure-button', href: '/ReactApiTutorial' }, "API")),
+                    h("li", { class: 'pure-menu-item' },
+                        h("a", { class: 'pure-menu-link pure-button', href: '/ReactTutorial' }, "React Demo")),
+                    h("li", { class: 'pure-menu-item' },
+                        h("a", { class: 'pure-menu-link pure-button', href: '/UnistoreDemo' }, "Unistore")),
+                    h("li", { class: 'pure-menu-item' },
+                        h("a", { class: 'pure-menu-link pure-button', href: '/ReactUnistore' }, "React Unistore")),
+                    h("li", { class: 'pure-menu-item' },
+                        h("a", { class: 'pure-menu-link pure-button', href: '/stencilWC' }, "Stencil Cust. Elem"))))); };
             return _this;
         }
         return Main;
