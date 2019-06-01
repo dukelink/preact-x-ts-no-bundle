@@ -1,4 +1,4 @@
-/// <reference path="./index.d.ts" />
+/// <reference path="../preact-dts-edited/index.d.ts" />
 //import * as preact from 'preact';
 
 declare namespace Router {

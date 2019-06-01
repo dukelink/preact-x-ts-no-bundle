@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5",  /* es5 works with IE!! */
+        "target": "es6",  /* es5 works with IE!! */
         "module": "none", /* 'amd' works well in browser if we include requirejs but not needed yet... */
         "moduleResolution": "node",
         "sourceMap": false,

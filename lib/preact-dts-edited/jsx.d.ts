@@ -7,7 +7,7 @@ type Defaultize<Props, Defaults> =
 			& Pick<Props, Exclude<keyof Props, keyof Defaults>>
 		: never;
 
-export namespace JSXInternal {
+declare namespace JSX {
 
 	type LibraryManagedAttributes<Component, Props> =
 	Component extends { defaultProps: infer Defaults }
@@ -482,7 +482,7 @@ export namespace JSXInternal {
 		onTransitionEndCapture?: TransitionEventHandler;
 	}
 
-	interface HTMLAttributes extends preact.ClassAttributes<any>, DOMAttributes {
+	export interface HTMLAttributes extends preact.ClassAttributes<any>, DOMAttributes {
 		// Standard HTML Attributes
 		accept?: string;
 		acceptCharset?: string;
@@ -631,7 +631,7 @@ export namespace JSXInternal {
 		itemRef?: string;
 	}
 
-	interface IntrinsicElements {
+	export interface IntrinsicElements {
 		// HTML
 		a: HTMLAttributes;
 		abbr: HTMLAttributes;

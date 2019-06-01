@@ -1,5 +1,5 @@
-/// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
-/// <reference path="../lib/preact-beta1-dts-edited/preact-router-index.d.ts" />
+/// <reference path="../lib/preact-dts-edited/index.d.ts" />
+/// <reference path="../lib/preact-dts-edited/preact-router-index.d.ts" />
 
 //import { Fragment } from "../lib/preact-beta1-dts-edited";
 
@@ -27,7 +27,7 @@ namespace myRoutes {
 	export class MainRoutes extends Component
 	{ render = () => (
 		<Router>
-			<div path="/" style="margin-left: 50%; margin-top:25%; position: relative; left: -50px; width: 200px">WE ARE HOME!</div>
+			<div path="/" style={{ marginLeft: "50%", marginTop: "25%", position: "relative", left: "-50px", width: "200px" }} >WE ARE HOME!</div>
 			<myapp.TestComponent path="/Component1" name='Component 1' />
 			<myapp.TestComponent path="/Component2" name='Component 2' />
 			<reactApiTutorial.App path="/ReactApiTutorial" />

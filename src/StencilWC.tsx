@@ -1,4 +1,4 @@
-/// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
+/// <reference path="../lib/preact-dts-edited/index.d.ts" />
 
 // https://github.com/developit/preact/issues/1036
 declare module JSX {

@@ -25,6 +25,7 @@ export interface PreactElement extends HTMLElement {
 export interface VNode<P = {}> extends preact.VNode<P> {
 	// Redefine type here using our internal ComponentFactory type
 	type: string | ComponentFactory<P> | null;
+	_self: this;
 	_children: Array<VNode> | null;
 	/**
 	 * The [first (for Fragments)] DOM child of a VNode
@@ -40,7 +41,7 @@ export interface VNode<P = {}> extends preact.VNode<P> {
 export interface Component<P = {}, S = {}> extends preact.Component<P, S> {
 	constructor: preact.ComponentType<P>;
 	state: S; // Override Component["state"] to not be readonly for internal use, specifically Hooks
-	base?: PreactElement;
+	base?: PreactElement | null;
 
 	_dirty: boolean;
 	_renderCallbacks: Array<() => void>;

@@ -1,10 +1,8 @@
 export = preact;
 export as namespace preact;
 
-import { JSXInternal } from "./jsx";
-
 declare namespace preact {
-	export import JSX = JSXInternal;
+	export import JSXInternal = JSX;
 
 	//
 	// Preact Virtual DOM
@@ -12,7 +10,8 @@ declare namespace preact {
 
 	interface VNode<P = {}> {
 		type: ComponentType<P> | string | null;
-		props: P & { children: ComponentChildren } | string | number | null;
+		props: P & { children: ComponentChildren } | null;
+		text: string | number | null;
 		key: Key;
 		ref: Ref<any> | null;
 		/**
@@ -136,21 +135,17 @@ declare namespace preact {
 	// Preact createElement
 	// -----------------------------------
 
-	function createElement(
+	export function createElement(
 		type: string,
 		props: JSXInternal.HTMLAttributes & JSXInternal.SVGAttributes & Record<string, any> | null,
 		...children: ComponentChildren[]
 	): VNode<any>;
-	function createElement<P>(
+	export function createElement<P>(
 		type: ComponentType<P>,
 		props: Attributes & P | null,
 		...children: ComponentChildren[]
 	): VNode<any>;
-	namespace createElement {
-		export import JSX = JSXInternal;
-	}
 
-	type h = typeof createElement;
 	namespace h {
 		export import JSX = JSXInternal;
 	}
@@ -197,7 +192,7 @@ declare namespace preact {
 		/** Attach a hook that is invoked before a hook's state is queried. */
 		hook?(component: Component): void;
 		/** Attach a hook that is invoked after a vnode has rendered. */
-		diffed?(vnode: VNode): void;
+        diffed?(vnode: VNode): void;
 		/** Attach a hook that is invoked after an error is caught in a component but before calling lifecycle hooks */
 		catchError?(error: any, component: Component): void;
 		/** 
@@ -208,7 +203,7 @@ declare namespace preact {
 		 * 
 		 * @return Return a boolean indicating whether the error was handled by the hook or not
 		 */
-		catchRender?(error: any, component: Component): boolean;
+		catchRender?(error: any, component: Component): boolean;        
 		event?(e: Event): void;
 		useDebugValue?(value: string | number): void;
 	}

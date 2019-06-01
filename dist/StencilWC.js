@@ -1,25 +1,11 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var stencilWC;
 (function (stencilWC) {
-    var h = preact.h;
-    var Component = preact.Component;
-    var myDropdown = (function (_super) {
-        __extends(myDropdown, _super);
-        function myDropdown() {
-            var _this = _super.call(this) || this;
-            _this.items = [
+    const h = preact.h;
+    const Component = preact.Component;
+    class myDropdown extends Component {
+        constructor() {
+            super();
+            this.items = [
                 {
                     label: 'Spiderman',
                     publisher: 'Marvel'
@@ -37,38 +23,36 @@ var stencilWC;
                     publisher: 'Dark Horse Comics'
                 }
             ];
-            _this.render = function (props, state) {
+            this.render = (props, state) => {
                 return (h("div", null,
                     h("h1", null, "Stencil Custom Element"),
-                    h("p", null, JSON.stringify(_this.state)),
+                    h("p", null, JSON.stringify(this.state)),
                     h("hr", null),
                     h("label", null,
                         "Add new list item:",
-                        h("input", { type: "text", onChange: function (e) {
-                                var targ;
+                        h("input", { type: "text", onChange: (e) => {
+                                let targ;
                                 targ = e.target;
                                 state.items.push({ label: targ.value, publisher: '' });
-                                _this.setState(state);
+                                this.setState(state);
                                 targ.value = '';
                             } })),
                     h("hr", null),
                     h("p", null,
-                        h("my-dropdown", { "data-no-work-clickedItem": function (e) { return alert(e); } },
+                        h("my-dropdown", { "data-no-work-clickedItem": (e) => alert(e) },
                             " ",
                             h("label", { slot: "title" }, "Comics"),
                             h("span", { slot: "icon", class: "fas fa-caret-down" })))));
             };
-            _this.state = { items: _this.items };
-            return _this;
+            this.state = { items: this.items };
         }
-        myDropdown.prototype.componentDidMount = function () {
-            var el = document.querySelector('my-dropdown');
+        componentDidMount() {
+            const el = document.querySelector('my-dropdown');
             el.listItems = this.items;
-            el.addEventListener('clickedItem', function (event) {
+            el.addEventListener('clickedItem', (event) => {
                 alert(event);
             });
-        };
-        return myDropdown;
-    }(Component));
+        }
+    }
     stencilWC.myDropdown = myDropdown;
 })(stencilWC || (stencilWC = {}));

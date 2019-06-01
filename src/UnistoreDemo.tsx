@@ -1,4 +1,4 @@
-/// <reference path="../lib/preact-beta1-dts-edited/index.d.ts" />
+/// <reference path="../lib/preact-dts-edited/index.d.ts" />
 /// <reference path="unistore0.d.ts" />
 /// <reference path="unistore1.d.ts" />
 
