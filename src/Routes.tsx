@@ -32,6 +32,7 @@ namespace myRoutes {
 			<myapp.TestComponent path="/Component2" name='Component 2' />
 			<reactApiTutorial.App path="/ReactApiTutorial" />
 			<reactTutorial.App path="/ReactTutorial" />
+			<reactHooks.App path="/ReactHooks" />
 			<UnistoreDemo.App path="/UnistoreDemo" />
 			<reactUnistore.App path="/ReactUnistore" />
 			<stencilWC.myDropdown path="/stencilWC" />
@@ -58,6 +59,9 @@ namespace myRoutes {
 				</li>
 				<li class='pure-menu-item'>
 					<a class='pure-menu-link pure-button' href='/ReactTutorial'>React Demo</a>
+				</li>
+				<li class='pure-menu-item'>
+					<a class='pure-menu-link pure-button' href='/ReactHooks'>React Hooks</a>
 				</li>
 				<li class='pure-menu-item'>
 					<a class='pure-menu-link pure-button' href='/UnistoreDemo'>Unistore</a>

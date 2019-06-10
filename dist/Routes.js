@@ -24,6 +24,7 @@ var myRoutes;
                 h(myapp.TestComponent, { path: "/Component2", name: 'Component 2' }),
                 h(reactApiTutorial.App, { path: "/ReactApiTutorial" }),
                 h(reactTutorial.App, { path: "/ReactTutorial" }),
+                h(reactHooks.App, { path: "/ReactHooks" }),
                 h(UnistoreDemo.App, { path: "/UnistoreDemo" }),
                 h(reactUnistore.App, { path: "/ReactUnistore" }),
                 h(stencilWC.myDropdown, { path: "/stencilWC" }))); };
@@ -47,6 +48,8 @@ var myRoutes;
                         h("a", { class: 'pure-menu-link pure-button', href: '/ReactApiTutorial' }, "API")),
                     h("li", { class: 'pure-menu-item' },
                         h("a", { class: 'pure-menu-link pure-button', href: '/ReactTutorial' }, "React Demo")),
+                    h("li", { class: 'pure-menu-item' },
+                        h("a", { class: 'pure-menu-link pure-button', href: '/ReactHooks' }, "React Hooks")),
                     h("li", { class: 'pure-menu-item' },
                         h("a", { class: 'pure-menu-link pure-button', href: '/UnistoreDemo' }, "Unistore")),
                     h("li", { class: 'pure-menu-item' },
