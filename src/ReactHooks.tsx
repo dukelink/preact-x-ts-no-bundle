@@ -1,8 +1,18 @@
-/// <reference path="../lib/preact-dts-edited/index.d.ts" />
-
 namespace reactHooks {
 	// Imports:
-    const Component=preact.Component,h=preact.h;
+    const Component=preact.Component,h=preact.h,useState=preactHooks.useState;
+
+    export const Example = () => {
+        const [count, setCount] = useState(0);
+        return (
+            <div>
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>
+                Click me
+            </button>
+            </div>
+        );
+    }
 
     export class App extends Component {
         state = {
@@ -28,10 +38,12 @@ namespace reactHooks {
             
             return (
                 <div class='pure-g'>
-                    <div class='pure-u-1-5'>
-                    </div>
+                    <div class='pure-u-1-5'></div>
                     <div class='pure-u-3-5'>                        
                         <h1>React Tutorial</h1>
+                        <hr/>
+                        <Example />
+                        <hr/>
                         <p>Add a character with a name and a job to the table.</p>
                         <Form handleSubmit={this.handleSubmit} />
 

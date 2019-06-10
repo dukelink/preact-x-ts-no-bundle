@@ -11,54 +11,52 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var reactHooks;
-(function (reactHooks) {
-    var Component = preact.Component, h = preact.h, useState = preactHooks.useState;
-    reactHooks.Example = function () {
-        var _a = useState(0), count = _a[0], setCount = _a[1];
-        return (h("div", null,
-            h("p", null,
-                "You clicked ",
-                count,
-                " times"),
-            h("button", { onClick: function () { return setCount(count + 1); } }, "Click me")));
+var reactUnistore;
+(function (reactUnistore) {
+    var Component = preact.Component, h = preact.h;
+    var createStore = unistore.createStore;
+    var connect = unistore.connect;
+    var Provider = unistore.Provider;
+    var data = {
+        characters: []
     };
+    var store = createStore(data);
+    var actions = function (store) { return ({
+        removeCharacter: function (state, index) {
+            var characters = state.characters;
+            return ({
+                characters: characters.filter(function (character, i) {
+                    return i !== index;
+                })
+            });
+        },
+        handleSubmit: function (state, character) {
+            return ({ characters: state.characters.concat([character]) });
+        }
+    }); };
+    reactUnistore.App1 = connect('characters', actions)(function (_a) {
+        var characters = _a.characters, removeCharacter = _a.removeCharacter, handleSubmit = _a.handleSubmit;
+        return (h("div", null,
+            h("h1", null, "React Unistore"),
+            h("p", null, "Add a character with a name and a job to the table."),
+            h(Table, { characterData: characters, removeCharacter: removeCharacter }),
+            h("h3", null, "Add New"),
+            h(Form, { handleSubmit: handleSubmit })));
+    });
     var App = (function (_super) {
         __extends(App, _super);
         function App() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.state = {
-                characters: []
-            };
-            _this.removeCharacter = function (index) {
-                var characters = _this.state.characters;
-                _this.setState({
-                    characters: characters.filter(function (character, i) {
-                        return i !== index;
-                    })
-                });
-            };
-            _this.handleSubmit = function (character) {
-                _this.setState({ characters: _this.state.characters.concat([character]) });
-            };
-            return _this;
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         App.prototype.render = function () {
-            var characters = this.state.characters;
-            return (h("div", { class: 'pure-g' },
-                h("div", { class: 'pure-u-1-5' }),
-                h("div", { class: 'pure-u-3-5' },
-                    h("h1", null, "React Tutorial"),
-                    h("hr", null),
-                    h(reactHooks.Example, null),
-                    h("hr", null),
-                    h("p", null, "Add a character with a name and a job to the table."),
-                    h(Form, { handleSubmit: this.handleSubmit }),
-                    h(Table, { characterData: characters, removeCharacter: this.removeCharacter }))));
+            return (h("div", null,
+                h(DefaultApp, null)));
         };
         return App;
     }(Component));
-    reactHooks.App = App;
+    reactUnistore.App = App;
+    var DefaultApp = function () { return (h(Provider, { store: store },
+        h(reactUnistore.App1, null))); };
     var Form = (function (_super) {
         __extends(Form, _super);
         function Form(props) {
@@ -91,7 +89,7 @@ var reactHooks;
                     h("label", null, "Job"),
                     h("input", { type: "text", name: "job", value: job, onChange: this.handleChange })),
                 h("div", { class: "pure-controls" },
-                    h("button", { type: "submit", style: { backgroundColor: "ivory" } }, "Submit"))));
+                    h("button", { type: "submit" }, "Submit"))));
         };
         return Form;
     }(Component));
@@ -119,14 +117,10 @@ var reactHooks;
         }
         Table.prototype.render = function () {
             var _a = this.props, characterData = _a.characterData, removeCharacter = _a.removeCharacter;
-            return (!characterData.length ? '' :
-                h("div", null,
-                    h("br", null),
-                    h("hr", null),
-                    h("table", { class: 'pure-table pure-table-bordered' },
-                        h(TableHeader, null),
-                        h(TableBody, { characterData: characterData, removeCharacter: removeCharacter }))));
+            return (h("table", { class: 'pure-table pure-table-bordered' },
+                h(TableHeader, null),
+                h(TableBody, { characterData: characterData, removeCharacter: removeCharacter })));
         };
         return Table;
     }(Component));
-})(reactHooks || (reactHooks = {}));
+})(reactUnistore || (reactUnistore = {}));

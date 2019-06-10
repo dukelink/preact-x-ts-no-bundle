@@ -11,18 +11,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var reactHooks;
-(function (reactHooks) {
-    var Component = preact.Component, h = preact.h, useState = preactHooks.useState;
-    reactHooks.Example = function () {
-        var _a = useState(0), count = _a[0], setCount = _a[1];
-        return (h("div", null,
-            h("p", null,
-                "You clicked ",
-                count,
-                " times"),
-            h("button", { onClick: function () { return setCount(count + 1); } }, "Click me")));
-    };
+var reactTutorial;
+(function (reactTutorial) {
+    var Component = preact.Component, h = preact.h;
     var App = (function (_super) {
         __extends(App, _super);
         function App() {
@@ -49,16 +40,13 @@ var reactHooks;
                 h("div", { class: 'pure-u-1-5' }),
                 h("div", { class: 'pure-u-3-5' },
                     h("h1", null, "React Tutorial"),
-                    h("hr", null),
-                    h(reactHooks.Example, null),
-                    h("hr", null),
                     h("p", null, "Add a character with a name and a job to the table."),
                     h(Form, { handleSubmit: this.handleSubmit }),
                     h(Table, { characterData: characters, removeCharacter: this.removeCharacter }))));
         };
         return App;
     }(Component));
-    reactHooks.App = App;
+    reactTutorial.App = App;
     var Form = (function (_super) {
         __extends(Form, _super);
         function Form(props) {
@@ -91,7 +79,7 @@ var reactHooks;
                     h("label", null, "Job"),
                     h("input", { type: "text", name: "job", value: job, onChange: this.handleChange })),
                 h("div", { class: "pure-controls" },
-                    h("button", { type: "submit", style: { backgroundColor: "ivory" } }, "Submit"))));
+                    h("button", { type: "submit" }, "Submit"))));
         };
         return Form;
     }(Component));
@@ -129,4 +117,4 @@ var reactHooks;
         };
         return Table;
     }(Component));
-})(reactHooks || (reactHooks = {}));
+})(reactTutorial || (reactTutorial = {}));

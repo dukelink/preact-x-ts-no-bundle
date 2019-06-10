@@ -13,16 +13,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var reactHooks;
 (function (reactHooks) {
-    var Component = preact.Component, h = preact.h, useState = preactHooks.useState;
-    reactHooks.Example = function () {
-        var _a = useState(0), count = _a[0], setCount = _a[1];
-        return (h("div", null,
-            h("p", null,
-                "You clicked ",
-                count,
-                " times"),
-            h("button", { onClick: function () { return setCount(count + 1); } }, "Click me")));
-    };
+    var Component = preact.Component, useState = preact.useState, h = preact.h;
     var App = (function (_super) {
         __extends(App, _super);
         function App() {
@@ -49,9 +40,6 @@ var reactHooks;
                 h("div", { class: 'pure-u-1-5' }),
                 h("div", { class: 'pure-u-3-5' },
                     h("h1", null, "React Tutorial"),
-                    h("hr", null),
-                    h(reactHooks.Example, null),
-                    h("hr", null),
                     h("p", null, "Add a character with a name and a job to the table."),
                     h(Form, { handleSubmit: this.handleSubmit }),
                     h(Table, { characterData: characters, removeCharacter: this.removeCharacter }))));
