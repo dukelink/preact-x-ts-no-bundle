@@ -2,8 +2,21 @@ namespace reactHooks {
 	// Imports:
     const Component=preact.Component,h=preact.h,useState=preactHooks.useState;
 
+    // Example of self-contained IIFE factory to return singleton for data storage.
+    // This can be moved to another namespace for centralized app level storage.
+    // Note: Could restyle this as a class or could save 'state' as a static property 
+    //       in containing namespace....
+    var store = (() => {
+        var state;
+        return () => { 
+            if (!state)
+                state = useState(0);
+            return state; 
+        };
+    })();
+
     export const Example = () => {
-        const [count, setCount] = useState(0);
+        const [count, setCount] = store();
         return (
             <div>
             <p>You clicked {count} times</p>
