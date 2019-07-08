@@ -482,7 +482,7 @@ declare namespace JSX {
 		onTransitionEndCapture?: TransitionEventHandler;
 	}
 
-	export interface HTMLAttributes extends preact.ClassAttributes<any>, DOMAttributes {
+	interface HTMLAttributes extends preact.ClassAttributes<any>, DOMAttributes {
 		// Standard HTML Attributes
 		accept?: string;
 		acceptCharset?: string;
@@ -601,7 +601,7 @@ declare namespace JSX {
 		srcSet?: string;
 		start?: number;
 		step?: number | string;
-		style?: any;
+		style?: {[key: string]: string | number};
 		summary?: string;
 		tabIndex?: number;
 		target?: string;
@@ -631,7 +631,7 @@ declare namespace JSX {
 		itemRef?: string;
 	}
 
-	export interface IntrinsicElements {
+	interface IntrinsicElements {
 		// HTML
 		a: HTMLAttributes;
 		abbr: HTMLAttributes;

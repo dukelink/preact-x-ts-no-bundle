@@ -11,25 +11,79 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var hookStore;
+(function (hookStore) {
+    function setState(newState) {
+        var _this = this;
+        this.state = __assign({}, this.state, newState);
+        this.listeners.forEach(function (listener) {
+            listener(_this.state);
+        });
+    }
+    function useCustom(React) {
+        var _this = this;
+        var newListener = React.useState()[1];
+        React.useEffect(function () {
+            _this.listeners.push(newListener);
+            return function () {
+                _this.listeners = _this.listeners.filter(function (listener) { return listener !== newListener; });
+            };
+        }, []);
+        return [this.state, this.actions];
+    }
+    function associateActions(store, actions) {
+        var associatedActions = {};
+        Object.keys(actions).forEach(function (key) {
+            if (typeof actions[key] === 'function')
+                associatedActions[key] = actions[key].bind(null, store);
+            if (typeof actions[key] === 'object')
+                associatedActions[key] = associateActions(store, actions[key]);
+        });
+        return associatedActions;
+    }
+    hookStore.useStore = function (initialState, actions, initializer) {
+        var store = { state: initialState, listeners: [] };
+        store["setState"] = setState.bind(store);
+        store["actions"] = associateActions(store, actions);
+        if (initializer)
+            initializer(store);
+        return useCustom.bind(store, preactHooks);
+    };
+})(hookStore || (hookStore = {}));
 var reactHooks;
 (function (reactHooks) {
     var Component = preact.Component, h = preact.h, useState = preactHooks.useState;
-    var store = (function () {
-        var state;
-        return function () {
-            if (!state)
-                state = useState(0);
-            return state;
-        };
-    })();
+    var useStore = hookStore.useStore;
+    var initialState = {
+        count: 0,
+    };
+    var actions = {
+        addToCounter: function (_a, amount) {
+            var state = _a.state, setState = _a.setState;
+            var newCounterValue = state.count + amount;
+            setState({ count: newCounterValue });
+        },
+    };
+    var useGlobal = useStore(initialState, actions);
     reactHooks.Example = function () {
-        var _a = store(), count = _a[0], setCount = _a[1];
+        var _a = useGlobal(), globalState = _a[0], globalActions = _a[1];
         return (h("div", null,
             h("p", null,
                 "You clicked ",
-                count,
+                globalState.count,
                 " times"),
-            h("button", { onClick: function () { return setCount(count + 1); } }, "Click me")));
+            h("button", { onClick: function () { return globalActions.addToCounter(1); } }, "Click me")));
     };
     var App = (function (_super) {
         __extends(App, _super);

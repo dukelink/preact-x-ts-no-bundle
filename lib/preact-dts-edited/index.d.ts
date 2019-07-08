@@ -1,6 +1,7 @@
 export = preact;
 export as namespace preact;
 
+
 declare namespace preact {
 	export import JSXInternal = JSX;
 
@@ -10,8 +11,7 @@ declare namespace preact {
 
 	interface VNode<P = {}> {
 		type: ComponentType<P> | string | null;
-		props: P & { children: ComponentChildren } | null;
-		text: string | number | null;
+		props: P & { children: ComponentChildren } | string | number | null;
 		key: Key;
 		ref: Ref<any> | null;
 		/**
@@ -93,7 +93,7 @@ declare namespace preact {
 		componentWillUpdate?(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void;
 		getSnapshotBeforeUpdate?(oldProps: Readonly<P>, oldState: Readonly<S>): any;
 		componentDidUpdate?(previousProps: Readonly<P>, previousState: Readonly<S>, snapshot: any): void;
-		componentDidCatch?(error: any): void;
+		componentDidCatch?(error: any, errorInfo: any): void;
 	}
 
 	abstract class Component<P, S> {
@@ -145,7 +145,20 @@ declare namespace preact {
 		props: Attributes & P | null,
 		...children: ComponentChildren[]
 	): VNode<any>;
+	namespace createElement {
+		export import JSX = JSXInternal;
+	}
 
+	function h(
+		type: string,
+		props: JSXInternal.HTMLAttributes & JSXInternal.SVGAttributes & Record<string, any> | null,
+		...children: ComponentChildren[]
+	): VNode<any>;
+	function h<P>(
+		type: ComponentType<P>,
+		props: Attributes & P | null,
+		...children: ComponentChildren[]
+	): VNode<any>;
 	namespace h {
 		export import JSX = JSXInternal;
 	}
@@ -177,34 +190,15 @@ declare namespace preact {
 	 * Global options for preact
 	 */
 	interface Options {
-		/** Attach a hook that is invoked before render, mainly to check the arguments. */
-		root?(vnode: ComponentChild, parent: Element | Document | ShadowRoot | DocumentFragment): void;
 		/** Attach a hook that is invoked whenever a VNode is created. */
-		vnode(vnode: VNode): void;
-		/** Attach a hook that is invoked after a tree was mounted or was updated. */
-		commit?(vnode: VNode): void;
-		/** Attach a hook that is invoked immediately before a component is unmounted. */
+		vnode?(vnode: VNode): void;
+		/** Attach a hook that is invoked immediately before a vnode is unmounted. */
 		unmount?(vnode: VNode): void;
-		/** Attach a hook that is invoked before a vnode is diffed. */
-		diff?(vnode: VNode): void;
-		/** Attach a hook that is invoked before a vnode has rendered. */
-		render?(vnode: VNode): void;
-		/** Attach a hook that is invoked before a hook's state is queried. */
-		hook?(component: Component): void;
 		/** Attach a hook that is invoked after a vnode has rendered. */
-        diffed?(vnode: VNode): void;
-		/** Attach a hook that is invoked after an error is caught in a component but before calling lifecycle hooks */
-		catchError?(error: any, component: Component): void;
-		/** 
-		 * Attach a hook that is invoked after an error is caught while executing render.
-		 * 
-		 * When this hook returns true, the diffing on the affected vnode will be stopped.
-		 * When this hook returns false, the error will be thrown (and thus passed to catchError or lifecycle hooks)
-		 * 
-		 * @return Return a boolean indicating whether the error was handled by the hook or not
-		 */
-		catchRender?(error: any, component: Component): boolean;        
+		diffed?(vnode: VNode): void;
 		event?(e: Event): void;
+		requestAnimationFrame?: typeof requestAnimationFrame;
+		debounceRendering?(cb: () => void): void;
 		useDebugValue?(value: string | number): void;
 	}
 

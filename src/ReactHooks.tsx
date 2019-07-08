@@ -1,26 +1,66 @@
+namespace hookStore {
+    function setState(newState) {
+        this.state = { ...this.state, ...newState };
+        this.listeners.forEach((listener) => {
+            listener(this.state);
+        });
+    }
+    
+    function useCustom(React) {
+        const newListener = React.useState()[1];
+        React.useEffect(() => {
+            this.listeners.push(newListener);
+            return () => {
+                this.listeners = this.listeners.filter(listener => listener !== newListener);
+            };
+        }, []);
+        return [this.state, this.actions];
+    }
+    
+    function associateActions(store, actions) {
+        const associatedActions = {};
+        Object.keys(actions).forEach((key) => {
+            if (typeof actions[key] === 'function') 
+                associatedActions[key] = actions[key].bind(null, store);
+            if (typeof actions[key] === 'object') 
+                associatedActions[key] = associateActions(store, actions[key]);
+        });
+        return associatedActions;
+    }
+    
+    export const useStore = (initialState, actions, initializer?:any) => {
+        const store = { state: initialState, listeners: [] };
+        store["setState"] = setState.bind(store);
+        store["actions"] = associateActions(store, actions);
+        if (initializer) initializer(store);
+        return useCustom.bind(store, preactHooks);
+    };
+}
+
 namespace reactHooks {
 	// Imports:
     const Component=preact.Component,h=preact.h,useState=preactHooks.useState;
+    const useStore=hookStore.useStore;
 
-    // Example of self-contained IIFE factory to return singleton for data storage.
-    // This can be moved to another namespace for centralized app level storage.
-    // Note: Could restyle this as a class or could save 'state' as a static property 
-    //       in containing namespace....
-    var store = (() => {
-        var state;
-        return () => { 
-            if (!state)
-                state = useState(0);
-            return state; 
-        };
-    })();
+    const initialState = {
+        count: 0,
+    };
+    
+    const actions = {
+        addToCounter: ({state,setState}, amount) => {
+            const newCounterValue = state.count + amount;
+            setState({ count: newCounterValue });
+        },
+    };
+    
+    const useGlobal = useStore( initialState, actions);
 
     export const Example = () => {
-        const [count, setCount] = store();
+        const [globalState, globalActions] = useGlobal();
         return (
             <div>
-            <p>You clicked {count} times</p>
-            <button onClick={() => setCount(count + 1)}>
+            <p>You clicked {globalState.count} times</p>
+            <button onClick={() => globalActions.addToCounter(1)}>
                 Click me
             </button>
             </div>
