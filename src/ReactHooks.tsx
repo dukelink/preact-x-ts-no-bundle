@@ -67,27 +67,37 @@ namespace reactHooks {
         );
     }
 
-    export class App extends Component {
-        state = {
-            characters: []
-        };
-    
-        removeCharacter = index => {
-            const { characters } = this.state;
+
+    const initialState2 = {
+        characters: []
+    };
+
+
+    for (let i=1; i<500; i++)
+        initialState2.characters.push({ name: 'name_'+i, job:i })
+
+    const actions2 = {
+        removeCharacter: ({state,setState},index) => {
+            const { characters } = state;
         
-            this.setState({
+            setState({
                 characters: characters.filter((character, i) => { 
                     return i !== index;
                 })
             });
-        }
+        },
     
-        handleSubmit = character => {
-            this.setState({characters: [...this.state.characters, character]});
+        handleSubmit: ({state,setState},character) => {
+            setState({characters: [...state.characters, character]});
         }
-    
+    }
+
+    const useGlobal2 = useStore( initialState2, actions2);
+
+    export class App extends Component {
+
         render() {
-            const { characters } = this.state;
+            const [globalState, globalActions] = useGlobal2();
             
             return (
                 <div class='pure-g'>
@@ -98,11 +108,11 @@ namespace reactHooks {
                         <Example />
                         <hr/>
                         <p>Add a character with a name and a job to the table.</p>
-                        <Form handleSubmit={this.handleSubmit} />
+                        <Form handleSubmit={globalActions.handleSubmit} />
 
                         <Table 
-                            characterData={characters}
-                            removeCharacter={this.removeCharacter}
+                            characterData={globalState.characters}
+                            removeCharacter={globalActions.removeCharacter}
                         />
                     </div>
                 </div>

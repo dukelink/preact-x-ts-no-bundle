@@ -85,28 +85,34 @@ var reactHooks;
                 " times"),
             h("button", { onClick: function () { return globalActions.addToCounter(1); } }, "Click me")));
     };
+    var initialState2 = {
+        characters: []
+    };
+    for (var i = 1; i < 500; i++)
+        initialState2.characters.push({ name: 'name_' + i, job: i });
+    var actions2 = {
+        removeCharacter: function (_a, index) {
+            var state = _a.state, setState = _a.setState;
+            var characters = state.characters;
+            setState({
+                characters: characters.filter(function (character, i) {
+                    return i !== index;
+                })
+            });
+        },
+        handleSubmit: function (_a, character) {
+            var state = _a.state, setState = _a.setState;
+            setState({ characters: state.characters.concat([character]) });
+        }
+    };
+    var useGlobal2 = useStore(initialState2, actions2);
     var App = (function (_super) {
         __extends(App, _super);
         function App() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.state = {
-                characters: []
-            };
-            _this.removeCharacter = function (index) {
-                var characters = _this.state.characters;
-                _this.setState({
-                    characters: characters.filter(function (character, i) {
-                        return i !== index;
-                    })
-                });
-            };
-            _this.handleSubmit = function (character) {
-                _this.setState({ characters: _this.state.characters.concat([character]) });
-            };
-            return _this;
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         App.prototype.render = function () {
-            var characters = this.state.characters;
+            var _a = useGlobal2(), globalState = _a[0], globalActions = _a[1];
             return (h("div", { class: 'pure-g' },
                 h("div", { class: 'pure-u-1-5' }),
                 h("div", { class: 'pure-u-3-5' },
@@ -115,8 +121,8 @@ var reactHooks;
                     h(reactHooks.Example, null),
                     h("hr", null),
                     h("p", null, "Add a character with a name and a job to the table."),
-                    h(Form, { handleSubmit: this.handleSubmit }),
-                    h(Table, { characterData: characters, removeCharacter: this.removeCharacter }))));
+                    h(Form, { handleSubmit: globalActions.handleSubmit }),
+                    h(Table, { characterData: globalState.characters, removeCharacter: globalActions.removeCharacter }))));
         };
         return App;
     }(Component));

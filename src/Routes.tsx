@@ -35,7 +35,6 @@ namespace myRoutes {
 			<reactHooks.App path="/ReactHooks" />
 			<UnistoreDemo.App path="/UnistoreDemo" />
 			<reactUnistore.App path="/ReactUnistore" />
-			<stencilWC.myDropdown path="/stencilWC" />
 		</Router>
 	)}
 
@@ -68,9 +67,6 @@ namespace myRoutes {
 				</li>
 				<li class='pure-menu-item'>
 					<a class='pure-menu-link pure-button' href='/ReactUnistore'>React Unistore</a>
-				</li>
-				<li class='pure-menu-item'>
-					<a class='pure-menu-link pure-button' href='/stencilWC'>Stencil Cust. Elem</a>
 				</li>
 			</ul>
 		</header>

@@ -26,8 +26,7 @@ var myRoutes;
                 h(reactTutorial.App, { path: "/ReactTutorial" }),
                 h(reactHooks.App, { path: "/ReactHooks" }),
                 h(UnistoreDemo.App, { path: "/UnistoreDemo" }),
-                h(reactUnistore.App, { path: "/ReactUnistore" }),
-                h(stencilWC.myDropdown, { path: "/stencilWC" }))); };
+                h(reactUnistore.App, { path: "/ReactUnistore" }))); };
             return _this;
         }
         return MainRoutes;
@@ -53,9 +52,7 @@ var myRoutes;
                     h("li", { class: 'pure-menu-item' },
                         h("a", { class: 'pure-menu-link pure-button', href: '/UnistoreDemo' }, "Unistore")),
                     h("li", { class: 'pure-menu-item' },
-                        h("a", { class: 'pure-menu-link pure-button', href: '/ReactUnistore' }, "React Unistore")),
-                    h("li", { class: 'pure-menu-item' },
-                        h("a", { class: 'pure-menu-link pure-button', href: '/stencilWC' }, "Stencil Cust. Elem"))))); };
+                        h("a", { class: 'pure-menu-link pure-button', href: '/ReactUnistore' }, "React Unistore"))))); };
             return _this;
         }
         return Main;
