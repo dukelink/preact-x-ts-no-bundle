@@ -1,10 +1,11 @@
 import { PreactContext } from ".";  //"../..";
 
-type Inputs = ReadonlyArray<unknown>;
 
 export = preactHooks;
 export as namespace preactHooks;
 declare namespace preactHooks {
+
+type Inputs = ReadonlyArray<unknown>;
 
 export type StateUpdater<S> = (value: S | ((prevState: S) => S)) => void;
 /**
