@@ -1,7 +1,6 @@
-import { PreactContext } from ".";
+import { PreactContext } from ".";  //"../..";
 
 type Inputs = ReadonlyArray<unknown>;
-
 
 export = preactHooks;
 export as namespace preactHooks;

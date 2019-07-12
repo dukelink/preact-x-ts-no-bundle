@@ -601,7 +601,7 @@ declare namespace JSX {
 		srcSet?: string;
 		start?: number;
 		step?: number | string;
-		style?: {[key: string]: string | number};
+		style?: string | {[key: string]: string | number};
 		summary?: string;
 		tabIndex?: number;
 		target?: string;

@@ -1,8 +1,10 @@
 export = preact;
 export as namespace preact;
 
+//import { JSXInternal } from "./jsx";
 
 declare namespace preact {
+//	export import JSX = JSXInternal;
 	export import JSXInternal = JSX;
 
 	//
@@ -173,7 +175,7 @@ declare namespace preact {
 		replaceNode?: Element | Text
 	): void;
 	function hydrate(vnode: ComponentChild, parent: Element | Document | ShadowRoot | DocumentFragment): void;
-	function cloneElement(vnode: JSX.Element, props: any, ...children: ComponentChildren[]): JSX.Element;
+	function cloneElement(vnode: JSX.Element, props?: any, ...children: ComponentChildren[]): JSX.Element;
 
 	//
 	// Preact Built-in Components
