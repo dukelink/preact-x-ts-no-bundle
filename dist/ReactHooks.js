@@ -88,7 +88,7 @@ var reactHooks;
     var initialState2 = {
         characters: []
     };
-    for (var i = 1; i < 500; i++)
+    for (var i = 1; i < 5; i++)
         initialState2.characters.push({ name: 'name_' + i, job: i });
     var actions2 = {
         removeCharacter: function (_a, index) {
@@ -122,7 +122,7 @@ var reactHooks;
                     h("hr", null),
                     h("p", null, "Add a character with a name and a job to the table."),
                     h(Form, { handleSubmit: globalActions.handleSubmit }),
-                    h(Table, { characterData: globalState.characters, removeCharacter: globalActions.removeCharacter }))));
+                    h(CharacterTable, { characterData: globalState.characters, removeCharacter: globalActions.removeCharacter }))));
         };
         return App;
     }(Component));
@@ -170,7 +170,7 @@ var reactHooks;
                 h("th", null, "Job"),
                 h("th", null, "Remove"))));
     };
-    var TableBody = function (props) {
+    var CharacterTbody = function (props) {
         var rows = props.characterData.map(function (row, index) {
             return (h("tr", { key: index },
                 h("td", null, row.name),
@@ -180,21 +180,30 @@ var reactHooks;
         });
         return h("tbody", null, rows);
     };
-    var Table = (function (_super) {
-        __extends(Table, _super);
-        function Table() {
+    var CharacterTable = (function (_super) {
+        __extends(CharacterTable, _super);
+        function CharacterTable() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        Table.prototype.render = function () {
+        CharacterTable.prototype.render = function () {
             var _a = this.props, characterData = _a.characterData, removeCharacter = _a.removeCharacter;
             return (!characterData.length ? '' :
                 h("div", null,
                     h("br", null),
                     h("hr", null),
-                    h("table", { class: 'pure-table pure-table-bordered' },
+                    h(Table, { class: 'pure-table pure-table-bordered' },
                         h(TableHeader, null),
-                        h(TableBody, { characterData: characterData, removeCharacter: removeCharacter }))));
+                        h(CharacterTbody, { characterData: characterData, removeCharacter: removeCharacter }))));
         };
-        return Table;
+        return CharacterTable;
     }(Component));
+    var Table = function (props) { return (h("table", { class: props.class },
+        props.children.filter(function (x) {
+            console.log(x);
+            return x.type == CharacterTbody;
+        }),
+        props.children.filter(function (x) {
+            console.log(x);
+            return x.type != CharacterTbody;
+        }))); };
 })(reactHooks || (reactHooks = {}));

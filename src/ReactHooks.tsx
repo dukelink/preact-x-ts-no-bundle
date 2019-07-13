@@ -73,7 +73,7 @@ namespace reactHooks {
     };
 
 
-    for (let i=1; i<500; i++)
+    for (let i=1; i<5; i++)
         initialState2.characters.push({ name: 'name_'+i, job:i })
 
     const actions2 = {
@@ -110,7 +110,7 @@ namespace reactHooks {
                         <p>Add a character with a name and a job to the table.</p>
                         <Form handleSubmit={globalActions.handleSubmit} />
 
-                        <Table 
+                        <CharacterTable 
                             characterData={globalState.characters}
                             removeCharacter={globalActions.removeCharacter}
                         />
@@ -198,7 +198,7 @@ namespace reactHooks {
         );
     }
     
-    const TableBody = props => { 
+    const CharacterTbody = props => { 
         const rows = props.characterData.map((row, index) => {
             return (
                 <tr key={index}>
@@ -212,7 +212,7 @@ namespace reactHooks {
         return <tbody>{rows}</tbody>;
     }
     
-    class Table extends Component<{characterData,removeCharacter}> {
+    class CharacterTable extends Component<{characterData,removeCharacter}> {
         render() {
             const { characterData, removeCharacter } = this.props;
     
@@ -221,15 +221,28 @@ namespace reactHooks {
                 <div>
                     <br/>
                     <hr/>
-                    <table class='pure-table pure-table-bordered'>
+                    <Table class='pure-table pure-table-bordered'>
                         <TableHeader />
-                        <TableBody characterData={characterData} removeCharacter={removeCharacter} />
-                    </table>
+                        <CharacterTbody characterData={characterData} removeCharacter={removeCharacter} />
+                    </Table>
                 </div>
             );
         }
     }
     
+    const Table = props => (
+        <table class={props.class} >
+            { props.children.filter(x=>{
+                console.log(x)
+                return x.type==CharacterTbody
+            }) }
+            {/* Render table header just to test out props.children... */}
+            { props.children.filter(x=>{
+                console.log(x)
+                return x.type!=CharacterTbody
+            }) }
+        </table>
+    )
 }
 
 
